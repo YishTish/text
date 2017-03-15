@@ -28,8 +28,8 @@ If using npm:
 
 To change the URL, in the requirejs.config add the following:
 
+```javascript
 requirejs.config({
-  ...
     config:{
       text: {
           changeUrl: function (url) {
@@ -39,8 +39,8 @@ requirejs.config({
 
         }
     },
-...
 })
+```
 
 It is nice to build HTML using regular HTML tags, instead of building up DOM
 structures in script. However, there is no good way to embed HTML in a
