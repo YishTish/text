@@ -201,6 +201,10 @@ define(['module'], function (module) {
 
             //Load the text. Use XHR if possible and in a browser.
             if (!hasLocation || useXhr(url, defaultProtocol, defaultHostName, defaultPort)) {
+		//Change url. Useful for testing scenario, when the files are served from a 'base' directory that doesn't exist in running environment
+		if(masterConfig.changeUrl){
+			url = masterConfig.changeUrl(url);
+		}
                 text.get(url, function (content) {
                     text.finishLoad(name, parsed.strip, content, onLoad);
                 }, function (err) {
