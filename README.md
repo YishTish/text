@@ -6,6 +6,8 @@ resources.
 Known to work in RequireJS, but should work in other AMD loaders that support
 the same loader plugin API.
 
+This specific fork includes a new hook that allows to change the url for calling the HTML files just before the AJAX call is made. The trigger for this change was the need to add the 'base/' prefix in case of Karma testing, while keeping the original location for regular execution
+
 ## Docs
 
 See the [RequireJS API text section](http://requirejs.org/docs/api.html#text).
@@ -23,6 +25,22 @@ If using npm:
     npm install requirejs/text
 
 ## Usage
+
+To change the URL, in the requirejs.config add the following:
+
+requirejs.config({
+  ...
+    config:{
+      text: {
+          changeUrl: function (url) {
+          //obviously you can make whatever change is neccessary in your scenario
+            return  "/base"+url;
+          },
+
+        }
+    },
+...
+})
 
 It is nice to build HTML using regular HTML tags, instead of building up DOM
 structures in script. However, there is no good way to embed HTML in a
